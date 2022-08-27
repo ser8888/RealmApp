@@ -64,6 +64,7 @@ class TaskListViewController: UITableViewController {
     // MARK: - Table View Data Source
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let taskList = taskLists[indexPath.row]
+        print("TASKLIST----", taskList)
         
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { _, _, _ in
             StorageManager.shared.delete(taskList)
@@ -97,9 +98,9 @@ class TaskListViewController: UITableViewController {
         tasksVC.taskList = taskList
     }
 
-    @IBAction func sortingList(_ sender: UISegmentedControl) {
-    }
-    
+//    @IBAction func sortingList(_ sender: UISegmentedControl) {
+//    }
+//
     @objc private func addButtonPressed() {
         showAlert()
     }

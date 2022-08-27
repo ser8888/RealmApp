@@ -50,16 +50,18 @@ class TasksViewController: UITableViewController {
         
         let title = indexPath.section == 0 ? "Done" : "Undone"
         
-        let doneAction = UIContextualAction(style: .normal, title: title) { (_, _, isDone) in
+        let doneAction = UIContextualAction(style: .normal, title: title) { [unowned self] (_, _, isDone) in
             StorageManager.shared.done(task: task)
             
-            let indexPathForCurrentTask = IndexPath(row: self.currentTasks.count - 1, section: 0)
-            let indexPathForComletedTask = IndexPath(row: self.completedTasks.count - 1, section: 1)
+            let indexPathForCurrentTask = IndexPath(row: currentTasks.count - 1, section: 0)
+            let indexPathForComletedTask = IndexPath(row: completedTasks.count - 1, section: 1)
+            print("ОБМЕН СТРОК == ", indexPathForCurrentTask, indexPathForComletedTask)
             
             let destinationIndexRow = indexPath.section == 0 ? indexPathForComletedTask : indexPathForCurrentTask
             
             tableView.moveRow(at: indexPath, to: destinationIndexRow)
             isDone(true)
+            
             
         }
         

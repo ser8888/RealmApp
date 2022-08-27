@@ -23,7 +23,6 @@
                             </segments>
                             <connections>
                                 <action selector="sortingButtonPresses:" destination="qX0-tw-d0x" eventType="valueChanged" id="L6W-gK-74k"/>
-                                <action selector="sortingList:" destination="qX0-tw-d0x" eventType="valueChanged" id="1YQ-bZ-RKp"/>
                             </connections>
                         </segmentedControl>
                         <prototypes>

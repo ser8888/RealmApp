@@ -32,6 +32,18 @@ class TaskListViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    @IBAction func sortingButtonPresses(_ sender: UISegmentedControl) {
+        print("SELECTED SEGMENT PRESSED = ", sender.selectedSegmentIndex)
+        taskLists = sender.selectedSegmentIndex == 0
+            ? taskLists.sorted(byKeyPath : "date", ascending: true)
+            : taskLists.sorted(byKeyPath : "name", ascending: true)
+        
+        tableView.reloadData()
+        
+    }
+    
+    
+    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         taskLists.count
@@ -42,7 +54,9 @@ class TaskListViewController: UITableViewController {
         var content = cell.defaultContentConfiguration()
         let taskList = taskLists[indexPath.row]
         content.text = taskList.name
-        content.secondaryText = "\(taskList.tasks.count)"
+        // ПОДСЧЕТ ЧИСЛА АКТИВНЫХ ЗАДАЧ
+ //       let actualTasks = (taskList.tasks.filter("isComplete = false")).count
+        content.secondaryText = String((taskList.tasks.filter("isComplete = false")).count)
         cell.contentConfiguration = content
         return cell
     }
